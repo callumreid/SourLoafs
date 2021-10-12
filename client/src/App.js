@@ -1,20 +1,29 @@
 import React from "react";
 import LandingPage from "./Components/LandingPage";
+import TimeLine from "./Components/TimeLine";
 
 class App extends React.Component  {
   constructor(props) {
     super(props);
     this.state = {
-      displayLanding: true,
+      displayLandingPage: true,
       displayTimeLine: false
     };
+    this.toggleDisplayLandingPage = this.toggleDisplayLandingPage.bind(this);
     this.toggleDisplayTimeLine = this.toggleDisplayTimeLine.bind(this);
     this.toggleDisplayPastLoafs = this.toggleDisplayPastLoafs.bind(this);
   }
 
+  toggleDisplayLandingPage () {
+    console.log('display landingpage');
+  }
+
   toggleDisplayTimeLine () {
     console.log('display timeline');
-    //this.setState({displayTimeLine: true})
+    this.setState({
+      displayLandingPage: false,
+      displayTimeLine: true
+    })
   };
 
   toggleDisplayPastLoafs () {
@@ -22,12 +31,22 @@ class App extends React.Component  {
   };
 
   render () {
+    const displayLandingPage = this.state.displayLandingPage;
+    const displayTimeLine = this.state.displayTimeLine;
+    let landingPage, timeLine;
+    if (displayLandingPage) {
+     landingPage = <LandingPage
+     toggleDisplayPastLoafs={this.toggleDisplayPastLoafs}
+     toggleDisplayTimeLine={this.toggleDisplayTimeLine}
+     />
+    } else if (displayTimeLine) {
+      timeLine = <TimeLine />
+    }
+
     return (
       <div className='app'>
-        <LandingPage
-        toggleDisplayPastLoafs={this.toggleDisplayPastLoafs}
-        toggleDisplayTimeLine={this.toggleDisplayTimeLine}
-        />
+        {landingPage}
+        {timeLine}
       </div>
     )
   }
