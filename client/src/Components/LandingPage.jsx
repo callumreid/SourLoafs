@@ -5,13 +5,15 @@ const LandingPage = (props) => {
     <div className='landPageWrap'>
         <h1 className='banner'>Is your leaven ready?</h1>
         <button
-         className='startButton'
-         onClick={props.toggleDisplayTimeLine}
-         >Yes, let's start</button>
+          className='startButton'
+          onClick={props.toggleDisplayTimeLine}
+          >Yes, let's start
+        </button>
         <button
-         className='pastLoafsButton'
-         onClick={props.toggleDisplayPastLoafs}
-         >No, show past loafs</button>
+          className='pastLoafsButton'
+          onClick={props.toggleDisplayPastLoafs}
+          >No, show past loafs
+        </button>
     </div>
   )
 }
