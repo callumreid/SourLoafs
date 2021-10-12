@@ -2,6 +2,7 @@ import React from "react";
 import LandingPage from "./Components/LandingPage";
 import TimeLine from "./Components/TimeLine";
 import PastLoafs from "./Components/PastLoafs";
+import BakePage from "./Components/BakePage";
 
 class App extends React.Component  {
   constructor(props) {
@@ -9,11 +10,13 @@ class App extends React.Component  {
     this.state = {
       displayLandingPage: true,
       displayTimeLine: false,
-      displayPastLoafs: false
+      displayPastLoafs: false,
+      displayBake: false
     };
     this.toggleDisplayLandingPage = this.toggleDisplayLandingPage.bind(this);
     this.toggleDisplayTimeLine = this.toggleDisplayTimeLine.bind(this);
     this.toggleDisplayPastLoafs = this.toggleDisplayPastLoafs.bind(this);
+    this.toggleDisplayBake = this.toggleDisplayBake.bind(this);
   }
 
   toggleDisplayLandingPage () {
@@ -21,7 +24,8 @@ class App extends React.Component  {
     this.setState({
       displayLandingPage: true,
       displayTimeLine: false,
-      displayPastLoafs: true
+      displayPastLoafs: false,
+      displayBake: false
     })
   }
 
@@ -30,7 +34,8 @@ class App extends React.Component  {
     this.setState({
       displayLandingPage: false,
       displayTimeLine: true,
-      displayPastLoafs: false
+      displayPastLoafs: false,
+      displayBake: false
     });
   };
 
@@ -39,28 +44,46 @@ class App extends React.Component  {
     this.setState({
       displayLandingPage: false,
       displayTimeLine: false,
-      displayPastLoafs: true
+      displayPastLoafs: true,
+      displayBake: false
     });
   };
+
+  toggleDisplayBake() {
+    console.log('start bake');
+    this.setState({
+      displayLandingPage: false,
+      displayTimeLine: false,
+      displayPastLoafs: false,
+      displayBake: true
+    });
+  }
 
   render () {
     const displayLandingPage = this.state.displayLandingPage;
     const displayTimeLine = this.state.displayTimeLine;
     const displayPastLoafs = this.state.displayPastLoafs;
-    let landingPage, timeLine, pastLoafs;
+    const displayBake = this.state.displayBake;
+    let landingPage, timeLine, pastLoafs, bake;
     if (displayLandingPage) {
      landingPage = <LandingPage
      toggleDisplayPastLoafs={this.toggleDisplayPastLoafs}
      toggleDisplayTimeLine={this.toggleDisplayTimeLine}
      />
-    } else if (displayTimeLine) {
+    }
+    if (displayTimeLine) {
       timeLine = <TimeLine
        toggleDisplayLandingPage={this.toggleDisplayLandingPage}
+       toggleDisplayBake={this.toggleDisplayBake}
       />
-    } else if (displayPastLoafs) {
+    }
+    if (displayPastLoafs) {
       pastLoafs = <PastLoafs
         toggleDisplayLandingPage={this.toggleDisplayLandingPage}
        />
+    }
+    if (displayBake) {
+      bake = <BakePage />
     }
 
     return (
@@ -68,6 +91,7 @@ class App extends React.Component  {
         {landingPage}
         {timeLine}
         {pastLoafs}
+        {bake}
       </div>
     )
   }
