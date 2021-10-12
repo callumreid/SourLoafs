@@ -1,0 +1,25 @@
+{
+  "name": "SourLoafs",
+  "version": "1.0.0",
+  "description": "Sourdough bread baking journal for rustic country bread",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js"
+  },
+  "proxy": "http://localhost:3001",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/callumreid/SourLoafs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/callumreid/SourLoafs/issues"
+  },
+  "homepage": "https://github.com/callumreid/SourLoafs#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  }
+}
