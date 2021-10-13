@@ -63,8 +63,7 @@ class App extends React.Component  {
 
   breadBeenMade(notes) {
     console.log('bred is dun');
-    console.log(notes);
-    axios.post('http://localhost:3001/test', notes);
+    axios.post('http://localhost:3001/submitLoaf', notes);
 
     this.setState({
       displayLandingPage: true,

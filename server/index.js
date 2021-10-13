@@ -11,7 +11,7 @@ app.use(function(req, res, next) {
 });
 app.use(express.json())
 
-app.post("/test", (req, res) => {
+app.post("/submitLoaf", (req, res) => {
   const data = req.body;
    const query = `INSERT INTO Loaf_Notes (stepTwoInput, stepFourInput, stepFiveInput, stepEightInput, stepNineInput,
     finalNotesInput) VALUES ('${data['stepTwoInput']}', '${data['stepFourInput']}', '${data['stepFiveInput']}',
@@ -19,8 +19,8 @@ app.post("/test", (req, res) => {
 
   db.query(query, (err, results) => {
     if (err) {
-      console.log('err in endpoint /test ', err)
-      res.status(201).json('err in POST /test')
+      console.log('err in endpoint /submitLoaf ', err)
+      res.status(201).json('err in POST /submitLoaf')
     } else {
       console.log(results);
     }

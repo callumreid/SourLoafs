@@ -4,12 +4,12 @@ class BakePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stepTwoInput: 'a',
-      stepFourInput: 'b',
-      stepFiveInput: 'c',
-      stepEightInput: 'd',
-      stepNineInput: 'e',
-      finalNotesInput: 'f',
+      stepTwoInput: '',
+      stepFourInput: '',
+      stepFiveInput: '',
+      stepEightInput: '',
+      stepNineInput: '',
+      finalNotesInput: '',
     }
     this.handleChange = this.handleChange.bind(this);
   }
