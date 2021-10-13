@@ -1,15 +1,22 @@
 import React from 'react';
-import {getPastLoafData} from '../../src/helperfuncs.js'
 
 const PastLoafs = (props) => {
-  getPastLoafData((data) => {
-    console.log('data in component', data)
-  });
-
+  let loafs = props.pastLoafData.map(loaf => {
+    return <li key={`loaf${loaf.loafId}`}>
+      Loaf number {loaf.loafId}: <br/>
+      - {loaf.stepFourInput} <br/>
+      - {loaf.stepFiveInput} <br/>
+      - {loaf.stepEightInput} <br/>
+      - {loaf.stepNineInput} <br/>
+      - {loaf.finalNotesInput} <br/>
+      </li>
+  })
   return (
     <div className='PastLoafsWrap'>
-        <h1 className='PastLoafsHeader'>Loaf History</h1>
-        <p>Lots of past loaf history stored in a db</p>
+        <h1 className='PastLoafsHeader'>Notes on Past Loafs</h1>
+        <ul>
+        {loafs}
+        </ul>
         <button
           className='returnToLandingButton'
           onClick={props.toggleDisplayLandingPage}

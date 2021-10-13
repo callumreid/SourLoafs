@@ -4,6 +4,7 @@ import TimeLine from "./Components/TimeLine";
 import PastLoafs from "./Components/PastLoafs";
 import BakePage from "./Components/BakePage";
 import axios from "axios";
+import {getPastLoafData} from '../src/helperfuncs.js'
 
 class App extends React.Component  {
   constructor(props) {
@@ -12,13 +13,19 @@ class App extends React.Component  {
       displayLandingPage: true,
       displayTimeLine: false,
       displayPastLoafs: false,
-      displayBake: false
+      displayBake: false,
+      pastLoafData: []
     };
     this.toggleDisplayLandingPage = this.toggleDisplayLandingPage.bind(this);
     this.toggleDisplayTimeLine = this.toggleDisplayTimeLine.bind(this);
     this.toggleDisplayPastLoafs = this.toggleDisplayPastLoafs.bind(this);
     this.toggleDisplayBake = this.toggleDisplayBake.bind(this);
     this.breadBeenMade = this.breadBeenMade.bind(this);
+    this.getLoafData = this.getLoafData.bind(this);
+  }
+
+  componentDidMount() {
+    this.getLoafData();
   }
 
   toggleDisplayLandingPage () {
@@ -71,7 +78,14 @@ class App extends React.Component  {
       displayPastLoafs: false,
       displayBake: false
     });
+  }
 
+  getLoafData() {
+    getPastLoafData((data) => {
+      this.setState({
+        pastLoafData: data.data
+      })
+    });
   }
 
   render () {
@@ -95,6 +109,7 @@ class App extends React.Component  {
     if (displayPastLoafs) {
       pastLoafs = <PastLoafs
         toggleDisplayLandingPage={this.toggleDisplayLandingPage}
+        pastLoafData={this.state.pastLoafData}
        />
     }
     if (displayBake) {
