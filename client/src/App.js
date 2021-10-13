@@ -3,6 +3,7 @@ import LandingPage from "./Components/LandingPage";
 import TimeLine from "./Components/TimeLine";
 import PastLoafs from "./Components/PastLoafs";
 import BakePage from "./Components/BakePage";
+import axios from "axios";
 
 class App extends React.Component  {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component  {
     this.toggleDisplayTimeLine = this.toggleDisplayTimeLine.bind(this);
     this.toggleDisplayPastLoafs = this.toggleDisplayPastLoafs.bind(this);
     this.toggleDisplayBake = this.toggleDisplayBake.bind(this);
+    this.breadBeenMade = this.breadBeenMade.bind(this);
   }
 
   toggleDisplayLandingPage () {
@@ -59,6 +61,23 @@ class App extends React.Component  {
     });
   }
 
+  breadBeenMade(notes) {
+    console.log('bred is dun');
+    console.log(notes);
+    axios.post('http://localhost:3001/test', {
+      firstName: 'Bred',
+      lastName: 'Williams'
+    });
+
+    this.setState({
+      displayLandingPage: true,
+      displayTimeLine: false,
+      displayPastLoafs: false,
+      displayBake: false
+    });
+
+  }
+
   render () {
     const displayLandingPage = this.state.displayLandingPage;
     const displayTimeLine = this.state.displayTimeLine;
@@ -83,7 +102,9 @@ class App extends React.Component  {
        />
     }
     if (displayBake) {
-      bake = <BakePage />
+      bake = <BakePage
+       breadBeenMade={this.breadBeenMade}
+       />
     }
 
     return (
