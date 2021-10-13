@@ -1,6 +1,6 @@
 const express = require("express");
-
 const PORT = process.env.PORT || 3001;
+const db = require('../database/index.js');
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(express.json())
 
 app.post("/test", (req, res) => {
   console.log(req.body)
-  res.json({ message: "Mooooo from server!" });
+  res.json({ message: 'Bake deets posted' });
 });
 
 app.listen(PORT, () => {

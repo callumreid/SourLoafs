@@ -64,10 +64,7 @@ class App extends React.Component  {
   breadBeenMade(notes) {
     console.log('bred is dun');
     console.log(notes);
-    axios.post('http://localhost:3001/test', {
-      firstName: 'Bred',
-      lastName: 'Williams'
-    });
+    axios.post('http://localhost:3001/test', notes);
 
     this.setState({
       displayLandingPage: true,
