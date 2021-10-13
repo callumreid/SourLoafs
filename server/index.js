@@ -19,13 +19,23 @@ app.post("/submitLoaf", (req, res) => {
 
   db.query(query, (err, results) => {
     if (err) {
-      console.log('err in endpoint /submitLoaf ', err)
-      res.status(201).json('err in POST /submitLoaf')
-    } else {
-      console.log(results);
+      console.log('err in endpoint /submitLoaf ', err);
+      res.status(201).json('err in POST /submitLoaf');
     }
-  })
-  res.json({ message: 'Bake deets posted' });
+  });
+  res.json({message: 'Bake deets posted'})
+});
+
+app.get('/pastLoafData', (req, res) => {
+  const query = `SELECT * FROM Loaf_Notes`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.log('err in endpoint /pastLoafData', err);
+      res.status(201).json('err in GET /pastLoafData');
+    } else {
+      res.json(results);
+    }
+  });
 });
 
 app.listen(PORT, () => {

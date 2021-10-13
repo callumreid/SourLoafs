@@ -1,6 +1,11 @@
 import React from 'react';
+import {getPastLoafData} from '../../src/helperfuncs.js'
 
 const PastLoafs = (props) => {
+  getPastLoafData((data) => {
+    console.log('data in component', data)
+  });
+
   return (
     <div className='PastLoafsWrap'>
         <h1 className='PastLoafsHeader'>Loaf History</h1>

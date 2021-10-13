@@ -1,5 +1,5 @@
 import React from 'react';
-import bakeTimeCalc from '../helperfuncs';
+import {bakeTimeCalc} from '../helperfuncs';
 
 const TimeLine = (props) => {
   const finishedBakeTime = bakeTimeCalc();
