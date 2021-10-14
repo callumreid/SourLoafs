@@ -3,8 +3,9 @@ import LandingPage from "./Components/LandingPage";
 import TimeLine from "./Components/TimeLine";
 import PastLoafs from "./Components/PastLoafs";
 import BakePage from "./Components/BakePage";
+import LoafGallery from "./Components/LoafGallery";
 import axios from "axios";
-import {getPastLoafData} from '../src/helperfuncs.js'
+import {getPastLoafData} from './helperfuncs.js'
 
 class App extends React.Component  {
   constructor(props) {
@@ -14,12 +15,14 @@ class App extends React.Component  {
       displayTimeLine: false,
       displayPastLoafs: false,
       displayBake: false,
+      displayLoafGallery: false,
       pastLoafData: []
     };
     this.toggleDisplayLandingPage = this.toggleDisplayLandingPage.bind(this);
     this.toggleDisplayTimeLine = this.toggleDisplayTimeLine.bind(this);
     this.toggleDisplayPastLoafs = this.toggleDisplayPastLoafs.bind(this);
     this.toggleDisplayBake = this.toggleDisplayBake.bind(this);
+    this.toggleDisplayLoafGallery = this.toggleDisplayLoafGallery.bind(this);
     this.breadBeenMade = this.breadBeenMade.bind(this);
     this.getLoafData = this.getLoafData.bind(this);
   }
@@ -34,7 +37,8 @@ class App extends React.Component  {
       displayLandingPage: true,
       displayTimeLine: false,
       displayPastLoafs: false,
-      displayBake: false
+      displayBake: false,
+      displayLoafGallery: false
     })
   }
 
@@ -44,7 +48,8 @@ class App extends React.Component  {
       displayLandingPage: false,
       displayTimeLine: true,
       displayPastLoafs: false,
-      displayBake: false
+      displayBake: false,
+      displayLoafGallery: false
     });
   };
 
@@ -54,7 +59,8 @@ class App extends React.Component  {
       displayLandingPage: false,
       displayTimeLine: false,
       displayPastLoafs: true,
-      displayBake: false
+      displayBake: false,
+      displayLoafGallery: false
     });
   };
 
@@ -64,9 +70,21 @@ class App extends React.Component  {
       displayLandingPage: false,
       displayTimeLine: false,
       displayPastLoafs: false,
-      displayBake: true
+      displayBake: true,
+      displayLoafGallery: false
     });
-  }
+  };
+
+  toggleDisplayLoafGallery() {
+    console.log('lookatdem loafs');
+    this.setState({
+      displayLandingPage: false,
+      displayTimeLine: false,
+      displayPastLoafs: false,
+      displayBake: false,
+      displayLoafGallery: true
+    });
+  };
 
   breadBeenMade(notes) {
     console.log('bred is dun');
@@ -93,11 +111,13 @@ class App extends React.Component  {
     const displayTimeLine = this.state.displayTimeLine;
     const displayPastLoafs = this.state.displayPastLoafs;
     const displayBake = this.state.displayBake;
-    let landingPage, timeLine, pastLoafs, bake;
+    const displayLoafGallery = this.state.displayLoafGallery;
+    let landingPage, timeLine, pastLoafs, bake, loafGallery;
     if (displayLandingPage) {
      landingPage = <LandingPage
      toggleDisplayPastLoafs={this.toggleDisplayPastLoafs}
      toggleDisplayTimeLine={this.toggleDisplayTimeLine}
+     toggleDisplayLoafGallery={this.toggleDisplayLoafGallery}
      />
     }
     if (displayTimeLine) {
@@ -117,6 +137,11 @@ class App extends React.Component  {
        breadBeenMade={this.breadBeenMade}
        />
     }
+    if (displayLoafGallery) {
+      loafGallery = <LoafGallery
+        toggleDisplayLandingPage={this.toggleDisplayLandingPage}
+      />
+    }
 
     return (
       <div className='app'>
@@ -124,6 +149,7 @@ class App extends React.Component  {
         {timeLine}
         {pastLoafs}
         {bake}
+        {loafGallery}
       </div>
     )
   }
