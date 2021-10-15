@@ -11,11 +11,12 @@ class App extends React.Component  {
   constructor(props) {
     super(props);
     this.state = {
-      displayLandingPage: true,
+      displayLandingPage: false,
       displayTimeLine: false,
       displayPastLoafs: false,
       displayBake: false,
-      displayLoafGallery: false,
+      displayLoafGallery: true,
+      selectedFile: null,
       pastLoafData: []
     };
     this.toggleDisplayLandingPage = this.toggleDisplayLandingPage.bind(this);
@@ -25,6 +26,8 @@ class App extends React.Component  {
     this.toggleDisplayLoafGallery = this.toggleDisplayLoafGallery.bind(this);
     this.breadBeenMade = this.breadBeenMade.bind(this);
     this.getLoafData = this.getLoafData.bind(this);
+    this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
+    this.fileUploadHandler = this.fileUploadHandler.bind(this);
   }
 
   componentDidMount() {
@@ -96,7 +99,7 @@ class App extends React.Component  {
       displayPastLoafs: false,
       displayBake: false
     });
-  }
+  };
 
   getLoafData() {
     getPastLoafData((data) => {
@@ -104,6 +107,16 @@ class App extends React.Component  {
         pastLoafData: data.data
       })
     });
+  };
+
+  fileSelectedHandler(e) {
+    this.setState({
+      selectedFile: e.target.files[0]
+    })
+  }
+
+  fileUploadHandler() {
+
   }
 
   render () {
@@ -140,6 +153,8 @@ class App extends React.Component  {
     if (displayLoafGallery) {
       loafGallery = <LoafGallery
         toggleDisplayLandingPage={this.toggleDisplayLandingPage}
+        fileSelectedHandler={this.fileSelectedHandler}
+        fileUploadHandler={this.fileUploadHandler}
       />
     }
 

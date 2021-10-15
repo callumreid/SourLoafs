@@ -16,7 +16,7 @@ const LandingPage = (props) => {
           >No, show past loafs
         </button>
         <button
-          className='LoafGalleryButton'
+          className='loafGalleryButton'
           onClick={props.toggleDisplayLoafGallery}
           >Let me see them loafs
         </button>

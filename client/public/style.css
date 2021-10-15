@@ -4,3 +4,27 @@ body {
 
 
 /* LANDING PAGE */
+.landingPageButtons {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 5rem;
+}
+
+button {
+  color: black;
+  border: 2px solid rgb(216, 141, 2);
+  background-color: rgba(206, 169, 107, .2);
+  border-radius: 0px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 rgb(216, 141, 2);
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
