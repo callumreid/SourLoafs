@@ -5,7 +5,7 @@ import PastLoafs from "./Components/PastLoafs";
 import BakePage from "./Components/BakePage";
 import LoafGallery from "./Components/LoafGallery";
 import axios from "axios";
-import {getPastLoafData} from './helperfuncs.js'
+import {getPastLoafData, uploadLoaf} from './helperfuncs.js'
 
 class App extends React.Component  {
   constructor(props) {
@@ -110,13 +110,22 @@ class App extends React.Component  {
   };
 
   fileSelectedHandler(e) {
+    const file = e.target.files[0];
+    //console.log(file)
     this.setState({
-      selectedFile: e.target.files[0]
+      selectedFile: file
     })
   }
 
-  fileUploadHandler() {
+  fileUploadHandler(e) {
+    e.preventDefault();
+    let file = this.state.selectedFile;
+    let formData = new FormData();
+    formData.append('image', file);
+    formData.append('name', file.name);
 
+    axios.post('http://localhost:3001/uploadLoaf', formData)
+    .then(response => console.log(response));
   }
 
   render () {
