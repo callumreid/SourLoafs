@@ -5,19 +5,21 @@ import PastLoafs from "./Components/PastLoafs";
 import BakePage from "./Components/BakePage";
 import LoafGallery from "./Components/LoafGallery";
 import axios from "axios";
-import {getPastLoafData, uploadLoaf} from './helperfuncs.js'
+import {getPastLoafData} from './helperfuncs.js';
+import tempBred from './tempBred';
 
 class App extends React.Component  {
   constructor(props) {
     super(props);
     this.state = {
-      displayLandingPage: false,
+      displayLandingPage: true,
       displayTimeLine: false,
       displayPastLoafs: false,
       displayBake: false,
-      displayLoafGallery: true,
+      displayLoafGallery: false,
       selectedFile: null,
-      pastLoafData: []
+      pastLoafData: [],
+      photos: tempBred
     };
     this.toggleDisplayLandingPage = this.toggleDisplayLandingPage.bind(this);
     this.toggleDisplayTimeLine = this.toggleDisplayTimeLine.bind(this);
@@ -117,16 +119,32 @@ class App extends React.Component  {
     })
   }
 
+
   fileUploadHandler(e) {
     e.preventDefault();
+    e.stopPropagation();
     let file = this.state.selectedFile;
     let formData = new FormData();
-    formData.append('image', file);
-    formData.append('name', file.name);
+    formData.append('file', file);
 
-    axios.post('http://localhost:3001/uploadLoaf', formData)
-    .then(response => console.log(response));
-  }
+    axios.post('http://localhost:3001/uploadLoaf', formData, {
+
+    })
+    .then(res => console.log(res.statusText))
+    // $.ajax({
+    //   type: 'POST',
+    //   data: formData,
+    //   url:'http://localhost:3001/uploadLoaf',
+    //   cache: false,
+    //   contentType: false,
+    //   processData: false,
+    //   success: () => {
+    //     // reload the page
+    //     console.log('file posted')
+
+    //   }
+    // });
+   }
 
   render () {
     const displayLandingPage = this.state.displayLandingPage;
@@ -164,6 +182,7 @@ class App extends React.Component  {
         toggleDisplayLandingPage={this.toggleDisplayLandingPage}
         fileSelectedHandler={this.fileSelectedHandler}
         fileUploadHandler={this.fileUploadHandler}
+        photos={this.state.photos}
       />
     }
 

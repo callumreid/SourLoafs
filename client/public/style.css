@@ -11,7 +11,15 @@ body {
   row-gap: 5rem;
 }
 
-button {
+/* BAKE PAGE */
+.stepTwoInputWrapper{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+/* INPUTS IMAGES AND  BUTTONS */
+input, button {
   color: black;
   border: 2px solid rgb(216, 141, 2);
   background-color: rgba(206, 169, 107, .2);
@@ -28,3 +36,13 @@ button {
   transition: ease-out 0.4s;
 }
 
+input {
+  max-width: 250px;
+}
+
+img
+{
+    max-width: 100%;
+    min-width: 300px;
+    height: auto;
+}

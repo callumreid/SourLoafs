@@ -1,11 +1,9 @@
 const express = require("express");
 const PORT = process.env.PORT || 3001;
 const db = require('../database/index.js');
-const FormData = require('form-data');
-const multipart = require('connect-multiparty');
-const multipartMiddleware = multipart();
-const axios = require('axios');
+
 const app = express();
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -42,26 +40,27 @@ app.get('/pastLoafData', (req, res) => {
 });
 
 app.post('/uploadLoaf', (req, res) => {
-  console.log('uploadLoaf endpoint reached')
-  console.log(req.body.file);
-  console.log(req.body.name);
-
-  var formData = new FormData();
-  formData.append("image", req.body.file);
-  axios.post('https://us-central1-sour-loafs.cloudfunctions.net/uploadFile/', 'upload_file', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-  })
-    .then(result => {
-      console.log(result);
-      res.send(result);
-    })
-    .catch(err => {
-      console.log(err);
-      res.send(err)
-    })
+  res.send('upload successful')
 });
+
+
+// app.post('/uploadLoaf', (req, res) => {
+//   upload(req, res, (err) => {
+//     if (err) {
+//       res.sendStatus(500);
+//     }
+//     console.log(req.file);
+//     res.status(200).json('file received');
+//     axios.post('https://us-central1-sour-loafs.cloudfunctions.net/uploadFile/', req.file,)
+//     .then(result => {
+//       console.log(result);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.send(err)
+//     })
+//   });
+// });
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

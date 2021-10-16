@@ -1,0 +1,1 @@
+module.exports = ['https://i.imgur.com/vF1tPD0.jpg', 'https://i.imgur.com/iRGBkBs.jpg','https://i.imgur.com/IDErL7c.jpg','https://i.imgur.com/lZjgfl9.jpg','https://i.imgur.com/TJ6YKQx.jpg', 'https://i.imgur.com/CZpdqB7.jpg']
